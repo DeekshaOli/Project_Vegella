@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="icon" type="image/x-icon" href="/images/vegella-favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body id ="contactus" style="background:url(images/contactbg.jpg); background-size: cover; background-position: right; position: relative; background-repeat: no-repeat">
+<section class="contact" id="contact">
+
+    <h1 class="heading"> contact <span> now </span> </h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img src="images/contactus.png" alt="">
+
+        </div>
+
+        <form id="contactForm" action="#" method="post" onclick="validateForm()"  >
+
+            <div class="inputBox">
+                <input type="text" placeholder="first name" id="fname"  >
+
+                <input type="text" placeholder="last name" id="lname"  >
+            </div>
+
+            <div class="inputBox">
+                <input type="email" placeholder="email address" id="email"  >
+                <input type="phone" placeholder="phone" id="phone" >
+            </div>
+
+            <textarea placeholder="message" id="" cols="30" rows="10" ></textarea>
+
+            <input type="checkbox" name="Terms-Conditions" id="message" value="accept" class="btn">
+
+            I give permission to contact me on phone and email for marketing purposes<br>
+
+            <input type="submit" value="Send Message" class="btn">
+        </form>
+
+    </div>
+
+</section>
+
+<script>
+    
+    function validateForm(event) {
+      event.preventDefault(); 
+  
+      const fname = document.getElementById("fname").value.trim();
+      const lname = document.getElementById("lname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const message = document.getElementById("message").value.trim();
+  
+      
+      if (fname === "") 
+      {
+        alert("Please enter your First Name.");
+        return false;
+      }
+      let  regName = /^[\p{L} ,.'-]+$/u;
+      if(!regName.test(fname))
+      {
+       alert('Invalid first name given.');
+       return false;
+          }
+  
+      if (lname === "") {
+        alert("Please enter your Last Name");
+        return false;
+      }
+   
+      if(!regName.test(lname))
+      {
+       alert('Invalid last name given.');
+       return false;
+          }
+  
+      if (email === "") {
+        alert("Please enter your Email Address.");
+        return false;
+      } else if (!isValidEmail(email)) {
+        alert("Please enter a valid Email Address.");
+        return false;
+      }
+  
+      if (phone === "") {
+        alert("Please enter your Phone Number.");
+        return false;
+      } else if (!isValidPhoneNumber(phone)) {
+        alert("Please enter a valid Phone Number.");
+        return false;
+      }
+  
+      if (message === "") {
+        alert("Please enter your Message.");
+        return false;
+      }
+  
+      document.getElementById("contactForm").submit();
+    }
+  
+    // Function to validate email format using reg ex 
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+  
+    // Function to validate phone number format using regular expression
+    function isValidPhoneNumber(phone) {
+      const phoneRegex = /^\d{10}$/; 
+      return phoneRegex.test(phone);
+    }
+  
+ 
+    document.getElementById("contactForm").addEventListener("submit", validateForm);
+  </script>
+
+
+
+</body>
+</html>
